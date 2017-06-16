@@ -1,0 +1,17 @@
+# example of the needed xinetd file :
+# - copy that file to your /etc/xinetd.d directory.
+# - add the line : "modsec2ipt   54545/tcp" to
+#   your "/etc/services" file.
+# - restart xinetd.
+
+service modsec2ipt
+{
+	flags = NAMEINARGS
+	socket_type   = stream
+	protocol      = tcp
+	wait          = no
+	user          = root
+	server        = /usr/sbin/tcpd
+	server_args   = /usr/bin/modsec2ipt_srv.pl
+	only_from     = 127.0.0.1
+}
